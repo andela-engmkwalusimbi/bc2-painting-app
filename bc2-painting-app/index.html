@@ -4,7 +4,6 @@
 	<head>
 		<title>Kuchora App</title>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script type="text/javascript" src="js/main.js"></script>
 	</head>
 
 	<body>
@@ -16,17 +15,19 @@
 
 				<article class="pallets">
 					<h3>Shapes</h3>
-					<div class="shapes" id="rectbtn"></div>
-					<div class="shapes" id="cirlebtn"></div>
-					<div class="shapes" id="squarebtn"></div>
-					<div class="shapes" id="elipsebtn"></div>
-					<div class="shapes" id="linebtn"></div>
+					<ul>
+						<li id="rectbtn">R</li>
+						<li id="circlebtn">C</li>
+						<li id="squarebtn">S</li>
+						<li id="elipsbtn">E</li>
+						<li class="selected" id="pointer">P</li>
+						<li id="linebtn"></li>
+					<ul>
 					<div class="clear"></div>
 				</article>
 
 				<article class="pallets">
 					<h3>Tools</h3>
-					<div class="tools" id="pointer">Pointer</div>
 					<div class="tools" id="clearbtn">Clear</div>
 					<div class="tools" id="layers">layers</div>
 					
@@ -36,14 +37,14 @@
 				<article class="pallets">
 					<h3>Color</h3>
 					<p>
-						Fill Color<input type="color" id="fillcolor" >
+						Fill Color<input type="color" id="fillcolor" value="#003E90" >
 					</p>
 					<p>
 						Stoke Color<input type="color" id="strokecolor" >
 					</p>
 					<p>
-						Line weight<input type="range" id="lineweight" min="0" max="5" value="2" step="1" >
-						<output for="lineweight" id="volume">2</output>
+						Line weight<input type="range" id="lineweight" min="1" max="10" value="1" step="1" >
+						<output for="lineweight" id="rangeSize">1</output>
 					</p>
 				</article>
 
@@ -53,9 +54,10 @@
 				<canvas id="canvas"></canvas>
 			</section>
 			<div class="clear"></div>
-		</div>
-		
-	
+		</div>	
+			
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
 	</body>
 
 </html>

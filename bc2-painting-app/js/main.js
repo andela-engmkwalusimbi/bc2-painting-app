@@ -1,29 +1,18 @@
-window.onload = function() {
+(function() {
 	
 	var fillBtn = document.getElementById('fillcolor'),
 		strokeBtn = document.getElementById('strokecolor'),
-		lineBtn = document.getElementById('linebtn');
+		sizeBtn = document.getElementById('lineweight');
 
-	var rectBtn = document.getElementById('rectbtn'),
-		circleBtn = document.getElementById('circlebtn'),
-		squareBtn = document.getElementById('squarebtn'),
-		elipseBtn = document.getElementById('elipsebtn'),
-		pointer = document.getElementById('pointer'),
-		clearBtn = document.getElementById('clearbtn');
+	//get the objects by id
+	var clearBtn = document.getElementById('clearbtn');
 
+	var shapes = $('ul li');
+	console.log(shapes);
+	
 	var strokeColo = strokeBtn.value,
+		lineSiz = sizeBtn.value;
 		fillColo = fillBtn.value;
-
-
-	var indicator = true;
-
-
-	if(!indicator){
-		//either the shape btns is selected
-	} else {
-		//the pointer is selected
-	}
-
 
 	var canvas = document.querySelector('#canvas');
 	var ctx = canvas.getContext('2d');
@@ -50,7 +39,7 @@ window.onload = function() {
 	// Pencil Points
 	var ppts = [];
 
-	var value = "rect";
+	var value = "pointer";
 
 	/* Drawing on Paint App */
 	tmp_ctx.lineWidth = 5;
@@ -59,15 +48,52 @@ window.onload = function() {
 	tmp_ctx.strokeStyle = 'blue';
 	tmp_ctx.fillStyle = 'blue';
 
-	/*setting on click listeners*/
-	fillBtn.onclick = function() {
+	/*setting oninput listeners*/
+	fillBtn.oninput = function() {
 		fillColo = this.value;
 	}
 
-	strokeBtn.onclick = function() {
+	strokeBtn.oninput = function() {
 		strokeColo = this.value;
 	}
 
+	sizeBtn.oninput = function() {
+		lineSiz = sizeBtn.value;
+		document.getElementById("rangeSize").value = lineSiz;
+	}
+
+	/*define oclick listeners for the shapes*/
+	shapes.on('click', function() {
+		$("li.selected").removeClass('selected');
+    	$(this).addClass('selected');
+    	switch ($(this).attr('id')) {
+    		case "rectbtn":
+    			value = "rect";
+    			break;
+    		case "linebtn":
+    			value = "line";
+    			break;
+    		case "squarebtn":
+    			value = "square";
+    			break;
+    		case "elipsbtn":
+    			value = "elipse";
+    			break;
+    		case "circlebtn":
+    			value = "circle";
+    			break;
+    		default:
+    			value = "pointer";
+    	}
+	});
+
+	clearBtn.addEventListener('click', function() {
+		clearCanvas();
+	}, false);
+	/*clearBtn.on('click', function() {
+		clearCanvas();
+	});*/
+	
 	/* Mouse Capturing Work */
 	tmp_canvas.addEventListener('mousemove', function(e) {
 		mouse.x = typeof e.offsetX !== 'undefined' ? e.offsetX : e.layerX;
@@ -143,9 +169,10 @@ window.onload = function() {
 		var height = Math.abs(mouse.y - start_mouse.y);
 		tmp_ctx.fillStyle = fillColo;
 		tmp_ctx.fillRect(x, y, width, height);
+		tmp_ctx.lineWidth = lineSiz;
 		tmp_ctx.strokeStyle = strokeColo;
 		tmp_ctx.strokeRect(x, y, width, height);
-		console.log(fillColo);
+		console.log(lineSiz);
 	};
 
 	var onPaintElipse = function () {
@@ -242,5 +269,9 @@ window.onload = function() {
 		);
 		tmp_ctx.stroke();		
 	};
-	
-};
+
+	var clearCanvas = function() {		
+		// Tmp canvas is always cleared up before drawing.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);			
+	};
+}());
