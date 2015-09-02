@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+
+	<head>
+		<title>Kuchora App</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script type="text/javascript" src="js/main.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<header>
+				Kuchora App
+			</header>	
+			<aside>
+
+				<article class="pallets">
+					<h3>Shapes</h3>
+					<div class="shapes" id="rectbtn"></div>
+					<div class="shapes" id="cirlebtn"></div>
+					<div class="shapes" id="squarebtn"></div>
+					<div class="shapes" id="elipsebtn"></div>
+					<div class="shapes" id="linebtn"></div>
+					<div class="clear"></div>
+				</article>
+
+				<article class="pallets">
+					<h3>Tools</h3>
+					<div class="tools" id="pointer">Pointer</div>
+					<div class="tools" id="clearbtn">Clear</div>
+					<div class="tools" id="layers">layers</div>
+					
+					<div id="layers"></div>
+				</article>
+
+				<article class="pallets">
+					<h3>Color</h3>
+					<p>
+						Fill Color<input type="color" id="fillcolor" >
+					</p>
+					<p>
+						Stoke Color<input type="color" id="strokecolor" >
+					</p>
+					<p>
+						Line weight<input type="range" id="lineweight" min="0" max="5" value="2" step="1" >
+						<output for="lineweight" id="volume">2</output>
+					</p>
+				</article>
+
+
+			</aside>
+			<section id="container">
+				<canvas id="canvas"></canvas>
+			</section>
+			<div class="clear"></div>
+		</div>
+		
+	
+	</body>
+
+</html>
