@@ -15,7 +15,7 @@
 
 				<article class="pallets">
 					<h3>Shapes</h3>
-					<ul>
+					<ul id="shapes">
 						<li id="rectbtn">R</li>
 						<li id="circlebtn">C</li>
 						<li id="squarebtn">S</li>
@@ -29,13 +29,16 @@
 				<article class="pallets">
 					<h3>Tools</h3>
 					<div class="tools" id="clearbtn">Clear</div>
-					<div class="tools" id="layers">layers</div>
+					<div class="tools" id="layers">Add layers</div>
 					
-					<div id="layers"></div>
+					<ul id="actualLayers">
+						<li id="layer1" class="selected">Layer 1</li>
+						<li id="layer2" class="hideObj">Layer 2</li>
+						<li id="layer3"  class="hideObj">Layer 3</li> 
+					</ul>
 				</article>
 
 				<article class="pallets">
-					<h3>Color</h3>
 					<p>
 						Fill Color<input type="color" id="fillcolor" value="#003E90" >
 					</p>
@@ -51,12 +54,15 @@
 
 			</aside>
 			<section id="container">
-				<canvas id="canvas"></canvas>
+				<canvas id="canvas1" ></canvas>
+				<canvas id="canvas2" class="hideObj"></canvas>
+				<canvas id="canvas3" class="hideObj"></canvas>
 			</section>
 			<div class="clear"></div>
 		</div>	
 			
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 	</body>
 
