@@ -1,9 +1,10 @@
-function functionCall(canvas,ctx,tmp_canvas,tmp_ctx,sketch) {
-	var canvas = canvas,
-		ctx = ctx,
-		tmp_canvas = tmp_canvas,
-		sketch = sketch,
-		tmp_ctx = tmp_ctx;
+function functionCall(canvas,ctx) {
+	
+	//create a temporary canvas and get its context and get reference to the section element 
+	var tmp_canvas = document.createElement('canvas');	
+	tmp_canvas.id = 'tmp_canvas';
+	var tmp_ctx = tmp_canvas.getContext('2d');
+	var	sketch = document.querySelector('#container');
 
 
 	//get the objects by id
@@ -11,6 +12,7 @@ function functionCall(canvas,ctx,tmp_canvas,tmp_ctx,sketch) {
 		fillBtn = document.getElementById('fillcolor'),
 		strokeBtn = document.getElementById('strokecolor'),
 		sizeBtn = document.getElementById('lineweight'),
+		//select li elements with in the element with an id of shapes
 		shapes = $('#shapes li');
 
 	//setting color, line size and fill color
@@ -19,16 +21,18 @@ function functionCall(canvas,ctx,tmp_canvas,tmp_ctx,sketch) {
 		fillColo = fillBtn.value;
 
 	
-	//get styles of the container element
+	//get styles of the container element and setting width and height of the canvas basing 
+	//on the container 
 	var sketch_style = getComputedStyle(sketch);
 	canvas.width = parseInt(sketch_style.getPropertyValue('width'));
 	canvas.height = parseInt(sketch_style.getPropertyValue('height'));
 	
-	// Creating a tmp canvas
+	// setting the width and height and z-index of the temp canvas to the width and height of the actual canvas
 	tmp_canvas.width = canvas.width;
 	tmp_canvas.height = canvas.height;
 	tmp_canvas.style.zIndex = "10090976556576";
 
+	//
 	sketch.appendChild(tmp_canvas);
 
 	//get a mouse points
@@ -39,7 +43,6 @@ function functionCall(canvas,ctx,tmp_canvas,tmp_ctx,sketch) {
 	// Pencil Points and value variable that 
 	// acts as toggle btn
 	var ppts = [];
-	var value = "pointer";
 
 	/* Drawing on Paint App */
 	tmp_ctx.lineWidth = lineSiz;
@@ -62,6 +65,7 @@ function functionCall(canvas,ctx,tmp_canvas,tmp_ctx,sketch) {
 		document.getElementById("rangeSize").value = lineSiz;
 	}
 
+	var value = "";
 	/*define oclick listeners for the shapes*/
 	shapes.on('click', function() {
 		$("#shapes li.selected").removeClass('selected');
